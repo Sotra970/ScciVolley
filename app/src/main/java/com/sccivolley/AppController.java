@@ -12,7 +12,7 @@ public class AppController extends Application {
 
     public static final String TAG = AppController.class.getSimpleName();
     private static AppController mInstance;
-
+    private MyPreferenceManager pref;
 
     private RequestQueue mRequestQueue;
     public static synchronized AppController getInstance() {
@@ -24,6 +24,15 @@ public class AppController extends Application {
         super.onCreate();
         mInstance = this;
     }
+
+    public MyPreferenceManager getPrefManager() {
+        if (pref == null) {
+            pref = new MyPreferenceManager(this);
+        }
+
+        return pref;
+    }
+
 
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
